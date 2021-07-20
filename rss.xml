@@ -138,23 +138,6 @@ char *wcsrchr( const wchar_t *string, int c );&lt;br /&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://self-ferry.github.io/hello-world/</guid>
-            <title>Hello World</title>
-            <link>https://self-ferry.github.io/hello-world/</link>
-            <pubDate>Fri, 16 Jul 2021 18:04:26 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv&#34;&gt;documentation&lt;/span&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=&#34;&gt;troubleshooting&lt;/span&gt; or you can ask me on &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==&#34;&gt;GitHub&lt;/span&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
-&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s&#34;&gt;Writing&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=&#34;&gt;Server&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo generate&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s&#34;&gt;Generating&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s&#34;&gt;Deployment&lt;/span&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">https://self-ferry.github.io/Win%E8%BF%9C%E7%A8%8B%E7%BA%BF%E7%A8%8B/</guid>
             <title>Win远程线程</title>
             <link>https://self-ferry.github.io/Win%E8%BF%9C%E7%A8%8B%E7%BA%BF%E7%A8%8B/</link>
@@ -14683,6 +14666,103 @@ Windows的一个功能允许红队或攻击者将服务隐藏起来，从而为�
 取消隐藏的命令
 &amp;amp; $env:SystemRoot\System32\sc.exe sdset SWCUEngine &amp;quot;D:(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCLCSWLOCRRC;;;IU)(A;;CCLCSWLOCRRC;;;SU)S:(AU;FA;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://self-ferry.github.io/Linux%E9%85%8D%E7%BD%AENginx%E6%9C%8D%E5%8A%A1/</guid>
+            <title>Linux配置Nginx服务</title>
+            <link>https://self-ferry.github.io/Linux%E9%85%8D%E7%BD%AENginx%E6%9C%8D%E5%8A%A1/</link>
+            <category term="Linux" scheme="https://self-ferry.github.io/categories/Linux/" />
+            <category term="Nginx" scheme="https://self-ferry.github.io/tags/Nginx/" />
+            <pubDate>Mon, 10 May 2021 19:21:34 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h1&gt;
+&lt;p&gt;Linux 作业： 1. 配置能加载静态文件和图片  2.Nginx 能加载 php 文件&lt;/p&gt;
+&lt;h1 id=&#34;nginx简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#nginx简介&#34;&gt;#&lt;/a&gt; Nginx 简介&lt;/h1&gt;
+&lt;p&gt;Nginx (engine x) 是一个高性能的 HTTP 和反向代理 web 服务器，同时也提供了 IMAP/POP3/SMTP 服务。Nginx 是由伊戈尔・赛索耶夫为俄罗斯访问量第二的 Rambler.ru 站点（俄文：Рамблер）开发的，第一个公开版本 0.1.0 发布于 2004 年 10 月 4 日。&lt;br /&gt;
+其将源代码以类 BSD 许可证的形式发布，因它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。2011 年 6 月 1 日，nginx 1.0.4 发布。&lt;br /&gt;
+Nginx 是一款轻量级的 Web 服务器 / 反向代理服务器及电子邮件（IMAP/POP3）代理服务器，在 BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上 nginx 的并发能力在同类型的网页服务器中表现较好，中国大陆使用 nginx 网站用户有：百度、京东、新浪、网易、腾讯、淘宝等&lt;/p&gt;
+&lt;h1 id=&#34;安装nginx&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装nginx&#34;&gt;#&lt;/a&gt; 安装 Nginx&lt;/h1&gt;
+&lt;p&gt;因为上次作业是配置 LAMP 环境，所以先卸载一下 Apache 和 PHP。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yum erase php* httpd*&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;直接安装&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yum -y install nginx&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;===========================================&lt;br /&gt;
+ 或者自己安装：&lt;/p&gt;
+&lt;p&gt;pcre、pcre-devel 安装&lt;br /&gt;
+ pcre（Perl Compatible Regular Expressions）是一个 perl 库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx 也需要此库。执行以下命令进行安装：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yum install -y pcre pcre-devel&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;zlib 安装&lt;br /&gt;
+ zlib 库提供了很多种压缩和解压缩方式，nginx 使用 zlib 对 http 包的内容进行 gzip，所以需要在 centos 7 上安装 zlib 库。执行以下命令进行安装操作：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yum install -y zlib zlib-devel&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;openssl 安装&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yum install -y openssl openssl-devel&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;从 http://nginx.org/download/ 上下载相应的版本&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wget http://nginx.org/download/nginx-1.20.0.tar.gz&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解压 &lt;code&gt;tar -zxvf nginx-1.20.0.tar.gz&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解压后移至目录 &lt;code&gt;cd nginx-1.20.0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;设置 Nginx 安装路径，如果没有指定，默认为 /usr/local/nginx&lt;br /&gt;
+ &lt;code&gt;[root@localhost nginx-1.5.9]# ./configure --prefix=/usr/local/nginx&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后 make (make 的过程是把各种语言写的源码文件，变成可执行文件和各种库文件)&lt;br /&gt;
+ &lt;code&gt;make&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;make install（make install 是把这些编译出来的可执行文件和库文件复制到合适的地方）&lt;br /&gt;
+ &lt;code&gt;make install&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;启动命令一般在 /usr/local/nginx/sbin/ 目录下的 nginx&lt;/p&gt;
+&lt;p&gt;可以先切换到 /usr/local/nginx/sbin/ 目录下，然后执行 ./nginx 也可启动&lt;/p&gt;
+&lt;h1 id=&#34;配置能回显图片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#配置能回显图片&#34;&gt;#&lt;/a&gt; 配置能回显图片&lt;/h1&gt;
+&lt;p&gt;在 nginx.conf 中这样配置&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;server &amp;#123;  
+    listen    80;#端口号  
+    server_name localhost;#本机  
+   
+    charset utf-8;  
+   
+    #access_log logs/host.access.log main;  
+   
+  location ~ .*\.(gif|jpg|jpeg|png)$ &amp;#123;  
+    expires 24h;  
+      root /home/images/;#指定图片存放路径  
+      access_log /usr/local/nginx/logs/images.log;#日志存放路径  
+      proxy_store on;  
+      proxy_store_access user:rw group:rw all:rw;  
+      proxy_temp_path     /home/images/;#图片访问路径  
+      proxy_redirect     off;  
+      proxy_set_header    Host 127.0.0.1;  
+      client_max_body_size  10m;  
+      client_body_buffer_size 1280k;  
+      proxy_connect_timeout  900;  
+      proxy_send_timeout   900;  
+      proxy_read_timeout   900;  
+      proxy_buffer_size    40k;  
+      proxy_buffers      40 320k;  
+      proxy_busy_buffers_size 640k;  
+      proxy_temp_file_write_size 640k;  
+      if ( !-e $request_filename)  
+      &amp;#123;  
+         proxy_pass http://127.0.0.1;#默认80端口  
+      &amp;#125;  
+  &amp;#125;   
+   
+    location / &amp;#123;  
+      root  /home/html; #html访问路径 
+      index index.html index2.htm; #html文件名称 
+  
+    &amp;#125; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启 Nginx，即可。&lt;/p&gt;
+&lt;h1 id=&#34;安装php-fpm&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装php-fpm&#34;&gt;#&lt;/a&gt; 安装 PHP-fpm&lt;/h1&gt;
+&lt;p&gt;PHP&lt;br /&gt;
+ 使用 yum 方式安装 PHP 时，不能安装 php7, 只能安装 php5，我们安装 php5, 新版本和旧版本的区别不是很大，没有必要纠结。&lt;/p&gt;
+&lt;p&gt;下载 php 相关的软件，php-fpm 是我们管理 php 的软件&lt;br /&gt;
+ &lt;code&gt;yum install -y php php-fpm php-curl php-gd* php-mysql&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;联合配置-nginx-php&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#联合配置-nginx-php&#34;&gt;#&lt;/a&gt; 联合配置 nginx + php&lt;/h1&gt;
+&lt;p&gt;在前面我们分别安装好了 nginx 和 php，现在将 nginx 和 php 联合配置起来。&lt;/p&gt;
+&lt;p&gt;将 nginx 和 php 设置为开机自启动。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;systemctl &lt;span class=&#34;token builtin class-name&#34;&gt;enable&lt;/span&gt; nginx.service&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;systemctl &lt;span class=&#34;token builtin class-name&#34;&gt;enable&lt;/span&gt; php-fpm.service&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更改 Nginx 的配置文件 nginx.conf, 使其能解析 php&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;location ~ &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;.php$ &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token comment&#34;&gt;# 设置监听端口&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            fastcgi_pass   &lt;span class=&#34;token number&#34;&gt;127.0&lt;/span&gt;.0.1:9000&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token comment&#34;&gt;# 设置脚本文件请求的路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            fastcgi_param  SCRIPT_FILENAME  &lt;span class=&#34;token variable&#34;&gt;$document_root&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$fastcgi_script_name&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token comment&#34;&gt;# 引入 fastcgi 的配置文件&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            include        fastcgi_params&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;不过这里我遇到了一个小问题：“找不到 PHP 文件”。&lt;/p&gt;
+&lt;p&gt;解决方法  参考自&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3d3dy5zaHVjaGVuZ3hpYW4uY29tL2FydGljbGUvNjU3Lmh0bWw=&#34;&gt; http://www.shuchengxian.com/article/657.html&lt;/span&gt;&lt;br /&gt;
+ 先 nginx 网站配置文件 *.conf 中的修改下&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;fastcgi_param  SCRIPT_FILENAME  /scripts&lt;span class=&#34;token variable&#34;&gt;$fastcgi_script_name&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;修改为&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;fastcgi_param  SCRIPT_FILENAME  &lt;span class=&#34;token variable&#34;&gt;$document_root&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$fastcgi_script_name&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;重启 nginx 服务器。&lt;/p&gt;
+&lt;p&gt;大致流程就是这样了。&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
