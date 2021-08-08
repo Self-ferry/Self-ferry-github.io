@@ -8,11 +8,89 @@
     <author>
       <name>Or0kit</name>
     </author>
-    <updated>2021-08-08T05:48:15.000Z</updated>
+    <updated>2021-08-08T12:51:45.000Z</updated>
     <category term="win" />
     <category term="渗透测试" />
     <category term="逆向" />
     <category term="学习" />
+    <entry>
+        <id>https://self-ferry.github.io/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F-%E9%95%BF%E8%B0%83%E7%94%A8%E4%B8%8E%E7%9F%AD%E8%B0%83%E7%94%A8/</id>
+        <title>保护模式-长调用与短调用</title>
+        <link rel="alternate" href="https://self-ferry.github.io/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F-%E9%95%BF%E8%B0%83%E7%94%A8%E4%B8%8E%E7%9F%AD%E8%B0%83%E7%94%A8/"/>
+        <content type="html">&lt;h1 id=&#34;短调用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#短调用&#34;&gt;#&lt;/a&gt; 短调用&lt;/h1&gt;
+&lt;h2 id=&#34;短调用指令格式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#短调用指令格式&#34;&gt;#&lt;/a&gt; 短调用指令格式&lt;/h2&gt;
+&lt;p&gt;CALL 立即数 / 寄存器 / 内存&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;指令类型&lt;/th&gt;
+&lt;th&gt;指令例子&lt;/th&gt;
+&lt;th&gt;对应硬编码&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CALL 立即数&lt;/td&gt;
+&lt;td&gt;call 52610610&lt;/td&gt;
+&lt;td&gt;E8 F4560A52&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CALL 寄存器&lt;/td&gt;
+&lt;td&gt;call eax&lt;/td&gt;
+&lt;td&gt;FFD0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CALL 内存&lt;/td&gt;
+&lt;td&gt;call dword ptr ds:[0x52610610]&lt;/td&gt;
+&lt;td&gt;FF15 10066152&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img data-src=&#34;image003.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;关于 CALL 指令详细内容参见&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuNTJwb2ppZS5jbi90aHJlYWQtMTM3OTk1Mi0xLTEuaHRtbA==&#34;&gt; https://www.52pojie.cn/thread-1379952-1-1.html&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;在 OllyDbg 中随便打开一个 EXE，执行 CALL 指令。&lt;br /&gt;
+观察堆栈的变化。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image001.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;单步执行后&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image002.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;对比前后的堆栈情况变化，可以发现：&lt;/p&gt;
+&lt;p&gt;短调用影响了 ESP 和 EIP 两个寄存器，并且会将返回地址压入到堆栈中&lt;/p&gt;
+&lt;p&gt;短调用通过 RET 指令返回&lt;/p&gt;
+&lt;h1 id=&#34;长调用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#长调用&#34;&gt;#&lt;/a&gt; 长调用&lt;/h1&gt;
+&lt;h2 id=&#34;长调用指令格式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#长调用指令格式&#34;&gt;#&lt;/a&gt; 长调用指令格式&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;CALL FAR CS:EIP&lt;/code&gt;  (EIP 是废弃的)&lt;/p&gt;
+&lt;p&gt;如： &lt;code&gt;CALL FAR 002B:00610610&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;CALL 指令要调用的地址是由 CS 段选择子查 GDT 表得到的调用门 段描述符得来的，后面的 EIP 不发挥作用。&lt;/p&gt;
+&lt;p&gt;长调用可以分为两种：跨段不提权和跨段提权。&lt;/p&gt;
+&lt;p&gt;长调用通过 RETF 指令返回。&lt;/p&gt;
+&lt;h2 id=&#34;跨段不提权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#跨段不提权&#34;&gt;#&lt;/a&gt; 跨段不提权&lt;/h2&gt;
+&lt;p&gt;所谓的跨段不提权就是指要跳转段和当前段的特权级别相同。&lt;/p&gt;
+&lt;p&gt;和短调用不同，长调用会先将 CS 压入堆栈，然后再将返回地址压入堆栈。&lt;/p&gt;
+&lt;p&gt;跨段不提权的长调用影响了 ESP EIP CS 三个寄存器，并且会将 CS 和返回地址压入到堆栈中。&lt;/p&gt;
+&lt;p&gt;堆栈变化图：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image004.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;跨段提权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#跨段提权&#34;&gt;#&lt;/a&gt; 跨段提权&lt;/h2&gt;
+&lt;p&gt;与跨段不提权相对，所谓的跨段提权就是指要跳转段和当前段的特权级别不同。&lt;/p&gt;
+&lt;p&gt;跨段提权的长调用 涉及到了权限的变化，一旦涉及到了权限的变化，堆栈也将随之切换，因此相比跨段不提权，还会影响 SS 寄存器。&lt;/p&gt;
+&lt;p&gt;跨段提权的长调用影响了 ESP EIP CS SS 四个寄存器，并且会将 SS、ESP、CS 和返回地址压入到堆栈中。&lt;/p&gt;
+&lt;p&gt;为什么要压入 SS 和 ESP？&lt;/p&gt;
+&lt;p&gt;因为当跨段提权时，堆栈会发生切换，压入 SS 和 ESP 是为了在调用结束后将堆栈恢复成原来的（切换前）的堆栈。&lt;/p&gt;
+&lt;p&gt;堆栈切换的来源是什么？&lt;/p&gt;
+&lt;p&gt;堆栈切换的来源是 TSS 段，这个留作之后再深入。&lt;/p&gt;
+&lt;p&gt;由 RING3 切换到 RING0 的跨段提权堆栈变化图&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image005.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
+&lt;p&gt;跨段调用时，一旦有权限切换，就会切换堆栈&lt;/p&gt;
+&lt;p&gt;CS 的权限一旦改变，SS 的权限也要随着改变，CS 与 SS 的特权级别必须一致（INTEL 定义的规则）&lt;/p&gt;
+&lt;p&gt;JMP FAR 只能跳转到同级代码段，但 CALL FAR 可以通过调用门进行提权（提升 CPL 的权限）&lt;/p&gt;
+&lt;h1 id=&#34;reference&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#reference&#34;&gt;#&lt;/a&gt; Reference&lt;/h1&gt;
+&lt;p&gt;滴水中级课件&lt;br /&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuNTJwb2ppZS5jbi90aHJlYWQtMTQyMzg5NC0xLTEuaHRtbA==&#34;&gt; https://www.52pojie.cn/thread-1423894-1-1.html&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="保护模式" scheme="https://self-ferry.github.io/categories/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F/" />
+        <category term="CALL与CALL FAR" scheme="https://self-ferry.github.io/tags/CALL%E4%B8%8ECALL-FAR/" />
+        <updated>2021-08-08T12:51:45.000Z</updated>
+    </entry>
     <entry>
         <id>https://self-ferry.github.io/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%A0%81%E8%B7%A8%E6%AE%B5%E8%B7%B3%E8%BD%AC/</id>
         <title>保护模式-代码跨段跳转</title>
@@ -1915,93 +1993,5 @@ Cobalt Strike 集成了端口转发、服务扫描，自动化溢出，多模式
         <category term="DC设备上下文" scheme="https://self-ferry.github.io/tags/DC%E8%AE%BE%E5%A4%87%E4%B8%8A%E4%B8%8B%E6%96%87/" />
         <category term="图形对象" scheme="https://self-ferry.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AF%B9%E8%B1%A1/" />
         <updated>2021-07-05T12:57:58.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://self-ferry.github.io/Windows%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</id>
-        <title>Windows逆向工程入门指南</title>
-        <link rel="alternate" href="https://self-ferry.github.io/Windows%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"/>
-        <content type="html">&lt;h1 id=&#34;reference&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#reference&#34;&gt;#&lt;/a&gt; Reference&lt;/h1&gt;
-&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUdKNDExWTd1YQ==&#34;&gt;https://www.bilibili.com/video/BV1GJ411Y7ua&lt;/span&gt;&lt;/p&gt;
-&lt;h1 id=&#34;windows逆向工程入门指南&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#windows逆向工程入门指南&#34;&gt;#&lt;/a&gt; Windows 逆向工程入门指南&lt;/h1&gt;
-&lt;p&gt;对小白指了条路。&lt;/p&gt;
-&lt;h2 id=&#34;思维导图截图&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思维导图截图&#34;&gt;#&lt;/a&gt; 思维导图截图&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;image001.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image002.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image003.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image004.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image005.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image006.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image007.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image008.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image009.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image010.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image011.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image012.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image013.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image014.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image015.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image016.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image017.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;image018.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h2 id=&#34;推荐书籍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#推荐书籍&#34;&gt;#&lt;/a&gt; 推荐书籍&lt;/h2&gt;
-&lt;p&gt;Windows 程序设计&lt;br /&gt;
- Windows 核心编程&lt;br /&gt;
- MFC 程序设计&lt;/p&gt;
-&lt;p&gt;算法导论&lt;/p&gt;
-&lt;p&gt;Windows 环境下 32 位汇编语言程序设计&lt;/p&gt;
-&lt;p&gt;《x86_x64 体系探索及编程》&lt;/p&gt;
-&lt;p&gt;taocp 计算机程序设计艺术&lt;/p&gt;
-&lt;p&gt;算法竞赛&lt;/p&gt;
-&lt;p&gt;大话数据结构&lt;/p&gt;
-&lt;p&gt;PE 权威指南&lt;/p&gt;
-&lt;p&gt;逆向工程权威指南  【内容杂，不适合入门】&lt;/p&gt;
-&lt;p&gt;软件调试 【张银奎】&lt;/p&gt;
-&lt;p&gt;Windows 高级调试&lt;/p&gt;
-&lt;p&gt;深入浅出密码学&lt;/p&gt;
-&lt;p&gt;0day 安全：软件漏洞分析技术    【学习 shellcode 的编写】&lt;/p&gt;
-&lt;p&gt;灰帽黑客【学习 shellcode 编写】&lt;/p&gt;
-&lt;p&gt;恶意代码分析【学习反调试和反虚拟机技术】&lt;/p&gt;
-&lt;p&gt;加密与解密第四版【学习加壳、脱壳技术】&lt;/p&gt;
-&lt;p&gt;恶意代码分析【病毒分析、恶意代码入门】&lt;/p&gt;
-&lt;p&gt;0day 安全：软件漏洞分析技术【学习漏洞相关技术】&lt;/p&gt;
-&lt;p&gt;漏洞战争&lt;/p&gt;
-&lt;p&gt;模糊测试 强制发掘安全漏洞的利器&lt;/p&gt;
-&lt;p&gt;Windows 内核原理与实现【看完 Windows 内核安全与驱动开发，缺一些理论，需要看这本书】&lt;br /&gt;
-深入理解 Windows 操作系统【也是理论。原版最好，中文翻译有些问题】&lt;/p&gt;
-&lt;p&gt;搞挂&lt;br /&gt;
- 1.Windows 内核安全与驱动开发【安全开发对抗】&lt;br /&gt;
-2.Windows 内核原理与实现【着急做挂的话，这本可以不看】&lt;br /&gt;
-3.Windows 内核设计思想【搞挂的要看这本书】&lt;/p&gt;
-&lt;p&gt;虫术 【Python 爬虫】&lt;/p&gt;
-&lt;h2 id=&#34;一些靠谱的招聘网站&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一些靠谱的招聘网站&#34;&gt;#&lt;/a&gt; 一些靠谱的招聘网站&lt;/h2&gt;
-&lt;p&gt;看雪论坛&lt;br /&gt;
-吾爱破解&lt;br /&gt;
- FreeBuf&lt;br /&gt;
-Boss 直聘&lt;br /&gt;
-智联招聘&lt;br /&gt;
- Tools&lt;br /&gt;
- 安全圈 info&lt;/p&gt;
-</content>
-        <category term="Windows逆向" scheme="https://self-ferry.github.io/categories/Windows%E9%80%86%E5%90%91/" />
-        <category term="Windows逆向" scheme="https://self-ferry.github.io/tags/Windows%E9%80%86%E5%90%91/" />
-        <updated>2021-06-18T23:52:01.000Z</updated>
     </entry>
 </feed>

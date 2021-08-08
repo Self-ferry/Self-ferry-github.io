@@ -7,6 +7,17 @@
     "home_page_url": "https://Self-ferry.github.io",
     "items": [
         {
+            "id": "https://self-ferry.github.io/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F-%E9%95%BF%E8%B0%83%E7%94%A8%E4%B8%8E%E7%9F%AD%E8%B0%83%E7%94%A8/",
+            "url": "https://self-ferry.github.io/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F-%E9%95%BF%E8%B0%83%E7%94%A8%E4%B8%8E%E7%9F%AD%E8%B0%83%E7%94%A8/",
+            "title": "保护模式-长调用与短调用",
+            "date_published": "2021-08-08T12:51:45.000Z",
+            "content_html": "<h1 id=\"短调用\"><a class=\"anchor\" href=\"#短调用\">#</a> 短调用</h1>\n<h2 id=\"短调用指令格式\"><a class=\"anchor\" href=\"#短调用指令格式\">#</a> 短调用指令格式</h2>\n<p>CALL 立即数 / 寄存器 / 内存</p>\n<table>\n<thead>\n<tr>\n<th>指令类型</th>\n<th>指令例子</th>\n<th>对应硬编码</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>CALL 立即数</td>\n<td>call 52610610</td>\n<td>E8 F4560A52</td>\n</tr>\n<tr>\n<td>CALL 寄存器</td>\n<td>call eax</td>\n<td>FFD0</td>\n</tr>\n<tr>\n<td>CALL 内存</td>\n<td>call dword ptr ds:[0x52610610]</td>\n<td>FF15 10066152</td>\n</tr>\n</tbody>\n</table>\n<p><img data-src=\"image003.png\" alt=\"\" /></p>\n<p>关于 CALL 指令详细内容参见<span class=\"exturl\" data-url=\"aHR0cHM6Ly93d3cuNTJwb2ppZS5jbi90aHJlYWQtMTM3OTk1Mi0xLTEuaHRtbA==\"> https://www.52pojie.cn/thread-1379952-1-1.html</span></p>\n<p>在 OllyDbg 中随便打开一个 EXE，执行 CALL 指令。<br />\n观察堆栈的变化。</p>\n<p><img data-src=\"image001.png\" alt=\"\" /></p>\n<p>单步执行后</p>\n<p><img data-src=\"image002.png\" alt=\"\" /></p>\n<p>对比前后的堆栈情况变化，可以发现：</p>\n<p>短调用影响了 ESP 和 EIP 两个寄存器，并且会将返回地址压入到堆栈中</p>\n<p>短调用通过 RET 指令返回</p>\n<h1 id=\"长调用\"><a class=\"anchor\" href=\"#长调用\">#</a> 长调用</h1>\n<h2 id=\"长调用指令格式\"><a class=\"anchor\" href=\"#长调用指令格式\">#</a> 长调用指令格式</h2>\n<p><code>CALL FAR CS:EIP</code>  (EIP 是废弃的)</p>\n<p>如： <code>CALL FAR 002B:00610610</code></p>\n<p>CALL 指令要调用的地址是由 CS 段选择子查 GDT 表得到的调用门 段描述符得来的，后面的 EIP 不发挥作用。</p>\n<p>长调用可以分为两种：跨段不提权和跨段提权。</p>\n<p>长调用通过 RETF 指令返回。</p>\n<h2 id=\"跨段不提权\"><a class=\"anchor\" href=\"#跨段不提权\">#</a> 跨段不提权</h2>\n<p>所谓的跨段不提权就是指要跳转段和当前段的特权级别相同。</p>\n<p>和短调用不同，长调用会先将 CS 压入堆栈，然后再将返回地址压入堆栈。</p>\n<p>跨段不提权的长调用影响了 ESP EIP CS 三个寄存器，并且会将 CS 和返回地址压入到堆栈中。</p>\n<p>堆栈变化图：</p>\n<p><img data-src=\"image004.png\" alt=\"\" /></p>\n<h2 id=\"跨段提权\"><a class=\"anchor\" href=\"#跨段提权\">#</a> 跨段提权</h2>\n<p>与跨段不提权相对，所谓的跨段提权就是指要跳转段和当前段的特权级别不同。</p>\n<p>跨段提权的长调用 涉及到了权限的变化，一旦涉及到了权限的变化，堆栈也将随之切换，因此相比跨段不提权，还会影响 SS 寄存器。</p>\n<p>跨段提权的长调用影响了 ESP EIP CS SS 四个寄存器，并且会将 SS、ESP、CS 和返回地址压入到堆栈中。</p>\n<p>为什么要压入 SS 和 ESP？</p>\n<p>因为当跨段提权时，堆栈会发生切换，压入 SS 和 ESP 是为了在调用结束后将堆栈恢复成原来的（切换前）的堆栈。</p>\n<p>堆栈切换的来源是什么？</p>\n<p>堆栈切换的来源是 TSS 段，这个留作之后再深入。</p>\n<p>由 RING3 切换到 RING0 的跨段提权堆栈变化图</p>\n<p><img data-src=\"image005.png\" alt=\"\" /></p>\n<h1 id=\"总结\"><a class=\"anchor\" href=\"#总结\">#</a> 总结</h1>\n<p>跨段调用时，一旦有权限切换，就会切换堆栈</p>\n<p>CS 的权限一旦改变，SS 的权限也要随着改变，CS 与 SS 的特权级别必须一致（INTEL 定义的规则）</p>\n<p>JMP FAR 只能跳转到同级代码段，但 CALL FAR 可以通过调用门进行提权（提升 CPL 的权限）</p>\n<h1 id=\"reference\"><a class=\"anchor\" href=\"#reference\">#</a> Reference</h1>\n<p>滴水中级课件<br />\n<span class=\"exturl\" data-url=\"aHR0cHM6Ly93d3cuNTJwb2ppZS5jbi90aHJlYWQtMTQyMzg5NC0xLTEuaHRtbA==\"> https://www.52pojie.cn/thread-1423894-1-1.html</span></p>\n",
+            "tags": [
+                "保护模式",
+                "CALL与CALL FAR"
+            ]
+        },
+        {
             "id": "https://self-ferry.github.io/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%A0%81%E8%B7%A8%E6%AE%B5%E8%B7%B3%E8%BD%AC/",
             "url": "https://self-ferry.github.io/%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%A0%81%E8%B7%A8%E6%AE%B5%E8%B7%B3%E8%BD%AC/",
             "title": "保护模式-代码跨段跳转",
@@ -232,17 +243,6 @@
                 "设备对象",
                 "DC设备上下文",
                 "图形对象"
-            ]
-        },
-        {
-            "id": "https://self-ferry.github.io/Windows%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/",
-            "url": "https://self-ferry.github.io/Windows%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/",
-            "title": "Windows逆向工程入门指南",
-            "date_published": "2021-06-18T23:52:01.000Z",
-            "content_html": "<h1 id=\"reference\"><a class=\"anchor\" href=\"#reference\">#</a> Reference</h1>\n<p><span class=\"exturl\" data-url=\"aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUdKNDExWTd1YQ==\">https://www.bilibili.com/video/BV1GJ411Y7ua</span></p>\n<h1 id=\"windows逆向工程入门指南\"><a class=\"anchor\" href=\"#windows逆向工程入门指南\">#</a> Windows 逆向工程入门指南</h1>\n<p>对小白指了条路。</p>\n<h2 id=\"思维导图截图\"><a class=\"anchor\" href=\"#思维导图截图\">#</a> 思维导图截图</h2>\n<p><img data-src=\"image001.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image002.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image003.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image004.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image005.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image006.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image007.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image008.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image009.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image010.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image011.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image012.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image013.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image014.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image015.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image016.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image017.png\" alt=\"\" /></p>\n<hr />\n<p><img data-src=\"image018.png\" alt=\"\" /></p>\n<hr />\n<h2 id=\"推荐书籍\"><a class=\"anchor\" href=\"#推荐书籍\">#</a> 推荐书籍</h2>\n<p>Windows 程序设计<br />\n Windows 核心编程<br />\n MFC 程序设计</p>\n<p>算法导论</p>\n<p>Windows 环境下 32 位汇编语言程序设计</p>\n<p>《x86_x64 体系探索及编程》</p>\n<p>taocp 计算机程序设计艺术</p>\n<p>算法竞赛</p>\n<p>大话数据结构</p>\n<p>PE 权威指南</p>\n<p>逆向工程权威指南  【内容杂，不适合入门】</p>\n<p>软件调试 【张银奎】</p>\n<p>Windows 高级调试</p>\n<p>深入浅出密码学</p>\n<p>0day 安全：软件漏洞分析技术    【学习 shellcode 的编写】</p>\n<p>灰帽黑客【学习 shellcode 编写】</p>\n<p>恶意代码分析【学习反调试和反虚拟机技术】</p>\n<p>加密与解密第四版【学习加壳、脱壳技术】</p>\n<p>恶意代码分析【病毒分析、恶意代码入门】</p>\n<p>0day 安全：软件漏洞分析技术【学习漏洞相关技术】</p>\n<p>漏洞战争</p>\n<p>模糊测试 强制发掘安全漏洞的利器</p>\n<p>Windows 内核原理与实现【看完 Windows 内核安全与驱动开发，缺一些理论，需要看这本书】<br />\n深入理解 Windows 操作系统【也是理论。原版最好，中文翻译有些问题】</p>\n<p>搞挂<br />\n 1.Windows 内核安全与驱动开发【安全开发对抗】<br />\n2.Windows 内核原理与实现【着急做挂的话，这本可以不看】<br />\n3.Windows 内核设计思想【搞挂的要看这本书】</p>\n<p>虫术 【Python 爬虫】</p>\n<h2 id=\"一些靠谱的招聘网站\"><a class=\"anchor\" href=\"#一些靠谱的招聘网站\">#</a> 一些靠谱的招聘网站</h2>\n<p>看雪论坛<br />\n吾爱破解<br />\n FreeBuf<br />\nBoss 直聘<br />\n智联招聘<br />\n Tools<br />\n 安全圈 info</p>\n",
-            "tags": [
-                "Windows逆向",
-                "Windows逆向"
             ]
         }
     ]
