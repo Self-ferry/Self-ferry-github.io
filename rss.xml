@@ -236,6 +236,11 @@ CPU 内部做了一张表，用来记录这些东西。它的效率和寄存器�
 &lt;p&gt;&lt;img data-src=&#34;image014.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;成功！&lt;/p&gt;
 &lt;h2 id=&#34;逆向分析mmisaddressvalid函数2-9-9-12&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#逆向分析mmisaddressvalid函数2-9-9-12&#34;&gt;#&lt;/a&gt; 逆向分析 MmIsAddressValid 函数 (2-9-9-12)&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;image015.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;内存中的2-9-9-12分页结构图&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#内存中的2-9-9-12分页结构图&#34;&gt;#&lt;/a&gt; 内存中的 2-9-9-12 分页结构图&lt;/h3&gt;
+&lt;p&gt;由 &lt;strong&gt;逆向分析 MmIsAddressValid 函数 (2-9-9-12)&lt;/strong&gt; 可以联想到内存中的 2-9-9-12 分页结构图&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image016.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;测试xd位&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#测试xd位&#34;&gt;#&lt;/a&gt; 测试 XD 位&lt;/h2&gt;
 &lt;h1 id=&#34;reference&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#reference&#34;&gt;#&lt;/a&gt; Reference&lt;/h1&gt;
 &lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0t3YW5zeS9hcnRpY2xlL2RldGFpbHMvMTA4OTU2OTcx&#34;&gt;https://blog.csdn.net/Kwansy/article/details/108956971&lt;/span&gt;&lt;br /&gt;
 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxOTg4NDQ4L2FydGljbGUvZGV0YWlscy8xMDI3MDk0NzA=&#34;&gt;https://blog.csdn.net/qq_41988448/article/details/102709470&lt;/span&gt;&lt;br /&gt;
